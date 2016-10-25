@@ -29,12 +29,12 @@ Copy the [sql](\sql) folder to your Android project.
 
 ##### More than one table.   
 
-   >SELECT P.NAME AS PRODUCT_NAME, 
-   >       C.NAME AS COLOR_NAME 
-   >  FROM PRODUCT P, 
-   >       COLOR C 
-   > WHERE P.IDCOLOR = C.ID
-
+    SELECT P.NAME AS PRODUCT_NAME, 
+           C.NAME AS COLOR_NAME 
+      FROM PRODUCT P, 
+           COLOR C 
+     WHERE P.IDCOLOR = C.ID
+>
      Sql.query()
         .col("P", "NAME", "PRODUCT_NAME")
         .col("C", "NAME", "COLOR_NAME")
