@@ -52,3 +52,14 @@ Copy the [sql](\sql) folder to your Android project.
         .equal("P", "IDCOLOR", "C","ID")
         .build();
    
+##### Where clauses.   
+
+>
+    SELECT  *  
+      FROM TABLE 
+     WHERE NOT EXISTS (1,2,3)
+    
+     Sql.query()
+        .table("TABLE")
+        .notExists("1,2,3")
+        .build();
