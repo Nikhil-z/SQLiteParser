@@ -11,6 +11,7 @@ Copy the [sql](\sql) folder to your Android project.
 
 # Implementation
 
+### Select
 
 ##### Working with columns.   
 
@@ -41,15 +42,18 @@ Copy the [sql](\sql) folder to your Android project.
   > Output: SELECT P.NAME AS PRODUCT_NAME, C.NAME AS COLOR_NAME FROM PRODUCT P, COLOR C WHERE P.IDCOLOR = C.ID
 
 
-##### Where clauses.   
-    
-     Sql.query()
-        .table("TABLE")
-        .notExists("1,2,3")
-        .build();
+##### Exists or not exists.   
+   
+        Sql.query()
+           .table("TABLE", "T")
+           .exists(Sql.query().table("XTABLE", "XT").equal("XT", "FIELD", "T","FIELD").build())
+           .notExists(Sql.query().table("YTABLE", "YT").equal("YT", "FIELD", "T","FIELD").build())
+           .build();
   
-  > Output: SELECT * FROM TABLE WHERE NOT EXISTS (1,2,3)
+  > Output: SELECT  *  FROM  TABLE T WHERE  EXISTS (SELECT  *  FROM  XTABLE XT WHERE XT.FIELD = T.FIELD) NOT EXISTS (SELECT  *  FROM  YTABLE YT WHERE YT.FIELD = T.FIELD)
   
+  
+##### Greater, smaller, equal, trim.   
   
       Sql.query()
          .table("TABLE")
@@ -62,13 +66,13 @@ Copy the [sql](\sql) folder to your Android project.
        
    > Output: SELECT  *  FROM  TABLE WHERE THE_COLUMN > 9 AND THE_COLUMN <= 40 OR TRIM(TEST) = 'RAW'
        
-##### Deleting.
+### Delete.
 
      Sql.delete("TABLE").smallerEqual("COL", 0).build();     
      
    > Output: DELETE FROM TABLE WHERE COL <= 0
    
-##### Inserting.
+### Insert.
    
       Sql.insert("TABLE")
          .col("A", 1)
@@ -77,7 +81,7 @@ Copy the [sql](\sql) folder to your Android project.
 
 > Output: INSERT INTO TABLE(A,B) VALUES(1,'TEST');
          
-##### Create Statement
+### Create.
 
      Sql.create("TABLE")
                 .pk("ID")
@@ -90,7 +94,7 @@ Copy the [sql](\sql) folder to your Android project.
   > Output: CREATE TABLE TABLE (ID INTEGER PRIMARY KEY,CODE INTEGER,TYPE INTEGER,PRICE FLOAT,QUANTITY FLOAT);
 
          
-##### You can bind your cursor, to take advantage of the conversions.
+### Cursor.
 
      Cursor cp = Sql.cursor(yourCursor);
 
@@ -102,7 +106,7 @@ Copy the [sql](\sql) folder to your Android project.
                                         , cp.str("NAME"));
                                         
                                         
-##### You can create a ContentValues from the Sql class.
+### ContentValues.
        
 	 Sql.content().add("NAME", "John")
 		          .add("CITY", "New York")
