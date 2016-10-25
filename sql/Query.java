@@ -41,7 +41,7 @@ public class Query extends Sql {
     }
 
 
-    public Query cols(String[] names) {
+    public Query cols(String... names) {
         if (names != null) {
             columns.addAll(Arrays.asList((String[]) names));
         }
