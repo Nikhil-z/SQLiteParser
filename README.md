@@ -51,17 +51,41 @@ Copy the [sql](\sql) folder to your Android project.
   > Output: SELECT * FROM TABLE WHERE NOT EXISTS (1,2,3)
   
   
-     Sql.query()
-        .table("TABLE")
-        .greater("THE_COLUMN" , 9)
-        .and()
-        .smallerEqual("THE_COLUMN", 40)
-        .or()
-        .equalTrim("TEST", " RAW ")
-        .build();
+      Sql.query()
+         .table("TABLE")
+         .greater("THE_COLUMN" , 9)
+         .and()
+         .smallerEqual("THE_COLUMN", 40)
+         .or()
+         .equalTrim("TEST", " RAW ")
+         .build();
        
    > Output: SELECT  *  FROM  TABLE WHERE THE_COLUMN > 9 AND THE_COLUMN <= 40 OR TRIM(TEST) = 'RAW'
        
-       
-       
+##### Deleting.
+
+     Sql.delete("TABLE").smallerEqual("COL", 0).build();     
+     
+   > Output: DELETE FROM TABLE WHERE COL <= 0
+   
+##### Inserting.
+   
+      Sql.insert("TABLE")
+         .col("A", 1)
+         .col("B", "TEST")
+         .build();
+
+> Output: INSERT INTO TABLE(A,B) VALUES(1,'TEST');
+         
+         
+##### You can bind you cursor, to take advantage of the conversions.
+
+     Cursor cp = Sql.cursor(yourCursor);
+
+        if (cp.binded()) 
+            Product product = new Product(cp.num("ID")
+                                        , cp.num("CODE")
+                                        , cp.flo("STOCK")
+                                        , cp.flo("")
+                                        , cp.str("NAME"));
        
