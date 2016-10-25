@@ -63,3 +63,23 @@ Copy the [sql](\sql) folder to your Android project.
         .table("TABLE")
         .notExists("1,2,3")
         .build();
+>
+    SELECT  *  
+      FROM  TABLE 
+      WHERE THE_COLUMN > 9 
+        AND THE_COLUMN <= 40 
+         OR TRIM(TEST) = 'RAW'
+
+     Sql.query()
+        .table("TABLE")
+        .greater("THE_COLUMN" , 9)
+        .and()
+        .smallerEqual("THE_COLUMN", 40)
+        .or()
+        .equalTrim("TEST", " RAW ")
+        .build();
+       
+       
+       
+       
+       
