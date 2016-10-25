@@ -61,7 +61,7 @@ public abstract class Sql {
     protected static final String NOT = "NOT";
 
     protected static final String CREATE_INDEX = "CREATE INDEX %s ON %s (%s);";
-    protected static final String CREATE_TABLE = "CREATE TABLE %s (%s);";
+    protected static final String CREATE_TABLE = "CREATE TABLE %s (%s)";
     protected static final String INTEGER = "INTEGER";
     protected static final String PK = INTEGER + " PRIMARY KEY";
     protected static final String TEXT = "TEXT";
