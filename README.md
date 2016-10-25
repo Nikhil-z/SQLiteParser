@@ -102,4 +102,9 @@ Copy the [sql](\sql) folder to your Android project.
                                         , cp.str("NAME"));
                                         
                                         
+##### You can create a ContentValues from the Sql class.
        
+	 Sql.content().add("NAME", "John")
+		          .add("CITY", "New York")
+        		  .add("STATE", "New Jersey");
+        		  
