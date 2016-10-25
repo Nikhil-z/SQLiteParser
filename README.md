@@ -14,16 +14,13 @@ Copy the [sql](\sql) folder to your Android project.
 
 ##### Working with columns.   
 
-   >SELECT A, B, C AS NICK, ALIAS.D AS NICK, E, F, G FROM YOUR_TABLE T
+   >SELECT A, B, C AS NICK, ALIAS.D AS NICK, E, F, G, SUM(H), COUNT(*), MAX(I) FROM  YOUR_TABLE T
 
-    Sql.query()
-       .col("A")
-       .col("B")
-       .col("C", "NICK")
-       .col("ALIAS","D", "NICK")
-       .cols("E", "F", "G")
-       .table("YOUR_TABLE", "T")
-       .build();
+    Sql.query().col("A").col("B").col("C", "NICK").col("ALIAS","D", "NICK").cols("E", "F", "G").sum("H").count().max("I").table("YOUR_TABLE", "T").build();
+
+##### More than one table.   
+
+
 
    >SELECT  *  FROM  YOU_TABLE WHERE TEXT_COLUMN = 'YOUR_VALUE' AND INT_COLUMN = 1
 
