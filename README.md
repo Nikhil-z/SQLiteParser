@@ -77,8 +77,20 @@ Copy the [sql](\sql) folder to your Android project.
 
 > Output: INSERT INTO TABLE(A,B) VALUES(1,'TEST');
          
+##### Create Statement
+
+     Sql.create("TABLE")
+                .pk("ID")
+                .num("CODE")
+                .num("TYPE")
+                .flo("PRICE")
+                .flo("QUANTITY")
+                .build();
+                
+  > Output: CREATE TABLE TABLE (ID INTEGER PRIMARY KEY,CODE INTEGER,TYPE INTEGER,PRICE FLOAT,QUANTITY FLOAT);
+
          
-##### You can bind you cursor, to take advantage of the conversions.
+##### You can bind your cursor, to take advantage of the conversions.
 
      Cursor cp = Sql.cursor(yourCursor);
 
@@ -88,4 +100,6 @@ Copy the [sql](\sql) folder to your Android project.
                                         , cp.flo("STOCK")
                                         , cp.flo("")
                                         , cp.str("NAME"));
+                                        
+                                        
        
