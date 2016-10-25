@@ -16,18 +16,26 @@ Copy the [sql](\sql) folder to your Android project.
 
    >SELECT A, B, C AS NICK, ALIAS.D AS NICK, E, F, G, SUM(H), COUNT(*), MAX(I) FROM  YOUR_TABLE T
 
-    Sql.query().col("A").col("B").col("C", "NICK").col("ALIAS","D", "NICK").cols("E", "F", "G").sum("H").count().max("I").table("YOUR_TABLE", "T").build();
+    Sql.query()
+       .col("A")
+       .col("B")
+       .col("C", "NICK")
+       .col("ALIAS","D", "NICK")
+       .cols("E", "F", "G")
+       .sum("H").count()
+       .max("I")
+       .table("YOUR_TABLE", "T")
+       .build();
 
 ##### More than one table.   
 
-
-
-   >SELECT  *  FROM  YOU_TABLE WHERE TEXT_COLUMN = 'YOUR_VALUE' AND INT_COLUMN = 1
+   >SELECT P.NAME AS PRODUCT_NAME,C.NAME AS COLOR_NAME FROM  PRODUCT P,COLOR C WHERE P.IDCOLOR = C.ID
 
      Sql.query()
-        .table("YOU_TABLE")
-        .equalStr("TEXT_COLUMN", "YOUR_VALUE")
-        .and()
-        .equal("INT_COLUMN", 1)
+        .col("P", "NAME", "PRODUCT_NAME")
+        .col("C", "NAME", "COLOR_NAME")
+        .table("PRODUCT", "P")
+        .table("COLOR", "C")
+        .equal("P", "IDCOLOR", "C","ID")
         .build();
    
