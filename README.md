@@ -14,15 +14,6 @@ Copy the [sql](\sql) folder to your Android project.
 
 ##### Working with columns.   
 
->
-    SELECT A, B, C AS NICK, 
-           ALIAS.D AS NICK, 
-           E, F, G, 
-           SUM(H), 
-           COUNT(*), 
-           MAX(I)
-     FROM  YOUR_TABLE T
-
     Sql.query()
        .col("A")
        .col("B")
@@ -34,15 +25,10 @@ Copy the [sql](\sql) folder to your Android project.
        .table("YOUR_TABLE", "T")
        .build();
 
+   > Output: SELECT A, B, C AS NICK, ALIAS.D AS NICK, E, F, G, SUM(H), COUNT(*), MAX(I) FROM  YOUR_TABLE T
+
+
 ##### More than one table.   
-
->
-    SELECT P.NAME AS PRODUCT_NAME, 
-           C.NAME AS COLOR_NAME 
-      FROM PRODUCT P, 
-           COLOR C 
-     WHERE P.IDCOLOR = C.ID
-
 
      Sql.query()
         .col("P", "NAME", "PRODUCT_NAME")
@@ -51,25 +37,20 @@ Copy the [sql](\sql) folder to your Android project.
         .table("COLOR", "C")
         .equal("P", "IDCOLOR", "C","ID")
         .build();
-   
-##### Where clauses.   
 
->
-    SELECT  *  
-      FROM TABLE 
-     WHERE NOT EXISTS (1,2,3)
+  > Output: SELECT P.NAME AS PRODUCT_NAME, C.NAME AS COLOR_NAME FROM PRODUCT P, COLOR C WHERE P.IDCOLOR = C.ID
+
+
+##### Where clauses.   
     
      Sql.query()
         .table("TABLE")
         .notExists("1,2,3")
         .build();
->
-    SELECT  *  
-      FROM  TABLE 
-      WHERE THE_COLUMN > 9 
-        AND THE_COLUMN <= 40 
-         OR TRIM(TEST) = 'RAW'
-
+  
+  > Output: SELECT * FROM TABLE WHERE NOT EXISTS (1,2,3)
+  
+  
      Sql.query()
         .table("TABLE")
         .greater("THE_COLUMN" , 9)
@@ -79,6 +60,7 @@ Copy the [sql](\sql) folder to your Android project.
         .equalTrim("TEST", " RAW ")
         .build();
        
+   > Output: SELECT  *  FROM  TABLE WHERE THE_COLUMN > 9 AND THE_COLUMN <= 40 OR TRIM(TEST) = 'RAW'
        
        
        
