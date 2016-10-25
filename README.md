@@ -12,7 +12,9 @@ Copy the [sql](\sql) folder to your Android project.
 # Implementation
 
 
-   >SELECT A,B,C AS NICK,ALIAS.D AS NICK,E,F,G FROM  YOUR_TABLE T
+##### Working with columns.   
+
+   >SELECT A, B, C AS NICK, ALIAS.D AS NICK, E, F, G FROM YOUR_TABLE T
 
     Sql.query()
        .col("A")
